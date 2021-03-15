@@ -5,13 +5,13 @@
 class Mouser < Formula
   desc "Automate actions via mouse gestures."
   homepage "https://github.com/birdkid/Mouser"
-  version "1.2.0"
+  version "1.2.1"
   license "LGPL-3.0-or-later"
   bottle :unneeded
 
   if OS.mac? && Hardware::CPU.intel?
-    url "https://github.com/birdkid/Mouser/releases/download/v1.2.0/mouser_1.2.0_Darwin_x86_64.tar.gz"
-    sha256 "c571e37ba4522c2cdd17a9cbad967ddacc6ff1905751e09bf2c75661f3fb804d"
+    url "https://github.com/birdkid/Mouser/releases/download/v1.2.1/mouser_1.2.1_Darwin_x86_64.tar.gz"
+    sha256 "d6a99105b4226b32e013e754765ef852409472ea9c2e4f7ba9455dea983e4d3f"
   end
 
   def install
