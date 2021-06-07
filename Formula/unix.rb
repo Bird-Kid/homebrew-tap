@@ -5,15 +5,15 @@
 class Unix < Formula
   desc "A simple UNIX timestamp and date converter."
   homepage "https://github.com/echocrow/unix"
-  version "1.0.0"
+  version "1.0.1"
   license "LGPL-3.0-or-later"
   bottle :unneeded
   depends_on :macos
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/echocrow/unix/releases/download/1.0.0/unix_1.0.0_Darwin_x86_64.tar.gz"
-      sha256 "df5d5ca11e06097e9195b919841e9f72600dfffdda52bccf04775088529844ae"
+      url "https://github.com/echocrow/unix/releases/download/1.0.1/unix_1.0.1_Darwin_x86_64.tar.gz"
+      sha256 "7df96c90d7229293cb79622128e3eb2a266c1e54bd0d49980a838afef3255082"
     end
   end
 
