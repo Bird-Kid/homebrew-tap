@@ -5,13 +5,16 @@
 class Mouser < Formula
   desc "Automate actions via mouse gestures."
   homepage "https://github.com/echocrow/Mouser"
-  version "1.2.2"
+  version "1.3.0"
   license "LGPL-3.0-or-later"
   bottle :unneeded
+  depends_on :macos
 
-  if OS.mac? && Hardware::CPU.intel?
-    url "https://github.com/echocrow/Mouser/releases/download/v1.2.2/mouser_1.2.2_Darwin_x86_64.tar.gz"
-    sha256 "cc1927cc5350291f71deb3e3b93946ce4fa861ce7832dc1aee57f6dcd369c2bb"
+  on_macos do
+    if Hardware::CPU.intel?
+      url "https://github.com/echocrow/Mouser/releases/download/v1.3.0/mouser_1.3.0_Darwin_x86_64.tar.gz"
+      sha256 "ca73712c071b375e385cd7f805ddc87b8ed3312358421c69a326e9cabb446b39"
+    end
   end
 
   def install
@@ -20,7 +23,7 @@ class Mouser < Formula
 
   def caveats; <<~EOS
     To configure and run mouser, create and edit the config file:
-      mkdir -p ~/.config/mouser && touch ~/.config/mouser/config.yml
+      mkdir -p "$(dirname "$(./mouser --config '?')")" && touch "$(./mouser --config '?')" && echo $_
 
     For examples on how to configure mouser, refer to the homepage:
       #{homepage}
