@@ -5,15 +5,15 @@
 class Cleardir < Formula
   desc "Clear empty directories and dispensable files."
   homepage "https://github.com/echocrow/cleardir"
-  version "0.1.0"
+  version "0.1.1"
   license "LGPL-3.0-or-later"
   bottle :unneeded
   depends_on :macos
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/echocrow/cleardir/releases/download/v0.1.0/cleardir_0.1.0_Darwin_x86_64.tar.gz"
-      sha256 "205d030fcdb2a537a7a037982b7b04d04fac95c42c095fe3e95efa2d02dd9b77"
+      url "https://github.com/echocrow/cleardir/releases/download/v0.1.1/cleardir_0.1.1_Darwin_x86_64.tar.gz"
+      sha256 "d2ae0319345bab5b1221e6318fd1ee3335257811f8aa52ab16b579a340da0f58"
     end
   end
 
