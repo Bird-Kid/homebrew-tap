@@ -5,14 +5,14 @@
 class Pasteword < Formula
   desc "Paste basic or template-based keys and passwords."
   homepage "https://github.com/echocrow/pasteword"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
   depends_on :macos
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/echocrow/pasteword/releases/download/v0.1.0/pasteword_0.1.0_Darwin_x86_64.tar.gz"
-      sha256 "d13345d0cb534b64fd832833262e97f18059fb9457d98ad3548f97a131b6d380"
+      url "https://github.com/echocrow/pasteword/releases/download/v0.2.0/pasteword_0.2.0_Darwin_x86_64.tar.gz"
+      sha256 "64207c6f55d80f5f04607eb22d451929c9e8f90336b0f80ec7b79ee2afb4d217"
 
       def install
         bin.install "pasteword"
