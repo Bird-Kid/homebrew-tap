@@ -5,17 +5,25 @@
 class Unboot < Formula
   desc "A simple CLI to shutdown or restart macOS."
   homepage "https://github.com/echocrow/macos-unboot"
-  version "0.1.0"
+  version "0.1.1"
   license "MIT"
   depends_on :macos
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/echocrow/macos-unboot/releases/download/v0.1.0/unboot_0.1.0_Darwin_x86_64.tar.gz"
-      sha256 "3cf9f827a9252440864729146e30e391a28d1280dec2c587e6b1a3b5ae9fad8c"
+    url "https://github.com/echocrow/macos-unboot/releases/download/v0.1.1/unboot_0.1.1_Darwin_x86_64.tar.gz"
+    sha256 "b63428f34863dd3c84ea2e6035d56f3dd766153794d59065537d607407019a8e"
 
-      def install
-        bin.install "unboot"
+    def install
+      bin.install "unboot"
+    end
+
+    if Hardware::CPU.arm?
+      def caveats
+        <<~EOS
+          The darwin_arm64 architecture is not supported for the Unboot
+          formula at this time. The darwin_amd64 binary may work in compatibility
+          mode, but it might not be fully supported.
+        EOS
       end
     end
   end
