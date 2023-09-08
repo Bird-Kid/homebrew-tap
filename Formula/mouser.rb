@@ -5,62 +5,51 @@
 class Mouser < Formula
   desc "Automate actions via mouse gestures."
   homepage "https://github.com/echocrow/Mouser"
-  version "1.4.2"
+  version "1.4.3"
   license "LGPL-3.0-or-later"
   depends_on :macos
 
   on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/echocrow/Mouser/releases/download/v1.4.2/mouser_1.4.2_Darwin_x86_64.tar.gz"
-      sha256 "dc443a5d86511950bf9f938f3b9646bad3e56ca9ec37b89bdb0e9b08f52b23a2"
+    url "https://github.com/echocrow/Mouser/releases/download/v1.4.3/mouser_1.4.3_darwin_amd64.tar.gz"
+    sha256 "c9788efe93d8b68067bede8d263f95444043d8db4a030d6f33fe248905220404"
 
-      def install
-        bin.install "mouser"
+    def install
+      bin.install "mouser"
+    end
+
+    if Hardware::CPU.arm?
+      def caveats
+        <<~EOS
+          The darwin_arm64 architecture is not supported for the Mouser
+          formula at this time. The darwin_amd64 binary may work in compatibility
+          mode, but it might not be fully supported.
+        EOS
       end
     end
   end
 
-  def caveats; <<~EOS
-    To configure and run mouser, create and edit the config file:
-      mkdir -p "$(dirname "$(./mouser --config '?')")" && touch "$(./mouser --config '?')" && echo $_
+  def caveats
+    <<~EOS
+      To configure and run mouser, create and edit the config file:
+        mkdir -p "$(dirname "$(./mouser --config '?')")" && touch "$(./mouser --config '?')" && echo $_
 
-    For examples on how to configure mouser, refer to the homepage:
-      #{homepage}
+      For examples on how to configure mouser, refer to the homepage:
+        #{homepage}
 
-    Note: The first time you run mouser you may need to provide additional
-    permissions to the app:
-      System Perferences > Security & Privacy > Privacy > Accessibility > mouser
-    Once granted, restart mouser.
-  EOS
+      Note: The first time you run mouser you may need to provide additional
+      permissions to the app:
+        System Perferences > Security & Privacy > Privacy > Accessibility > mouser
+      Once granted, restart mouser.
+    EOS
   end
 
-  plist_options :startup => false
-
-  def plist; <<~EOS
-    <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>Label</key>
-  <string>#{plist_name}</string>
-  <key>ProgramArguments</key>
-  <array>
-    <string>#{bin}/mouser</string>
-  </array>
-  <key>RunAtLoad</key>
-  <true />
-  <key>KeepAlive</key>
-  <dict>
-    <key>SuccessfulExit</key>
-    <false/>
-  </dict>
-</dict>
-</plist>
-
-  EOS
+  service do
+    run [opt_bin/"mouser"]
+    run_at_load true
+    keep_alive crashed: true
   end
 
   test do
-    system "#{bin}/mouser", "--version"
+    system "#{bin}/mouser --version"
   end
 end
