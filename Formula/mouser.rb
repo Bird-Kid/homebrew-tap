@@ -5,13 +5,13 @@
 class Mouser < Formula
   desc "Automate actions via mouse gestures."
   homepage "https://github.com/echocrow/Mouser"
-  version "1.4.3"
+  version "1.4.4"
   license "LGPL-3.0-or-later"
   depends_on :macos
 
   on_macos do
-    url "https://github.com/echocrow/Mouser/releases/download/v1.4.3/mouser_1.4.3_darwin_amd64.tar.gz"
-    sha256 "c9788efe93d8b68067bede8d263f95444043d8db4a030d6f33fe248905220404"
+    url "https://github.com/echocrow/Mouser/releases/download/v1.4.4/mouser_1.4.4_darwin_amd64.tar.gz"
+    sha256 "756e1c5872243a321b58311251374a709465cb0d73da2dbb2c21594218ed390b"
 
     def install
       bin.install "mouser"
@@ -44,9 +44,9 @@ class Mouser < Formula
   end
 
   service do
-    run [opt_bin/"mouser"]
+    run opt_bin/"mouser"
     run_at_load true
-    keep_alive crashed: true
+    keep_alive successful_exit: false
   end
 
   test do
