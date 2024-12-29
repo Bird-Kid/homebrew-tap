@@ -5,26 +5,24 @@
 class Mouser < Formula
   desc "Automate actions via mouse gestures."
   homepage "https://github.com/echocrow/Mouser"
-  version "1.4.4"
+  version "1.4.5"
   license "LGPL-3.0-or-later"
   depends_on :macos
 
-  on_macos do
-    url "https://github.com/echocrow/Mouser/releases/download/v1.4.4/mouser_1.4.4_darwin_amd64.tar.gz"
-    sha256 "756e1c5872243a321b58311251374a709465cb0d73da2dbb2c21594218ed390b"
+  if Hardware::CPU.intel?
+    url "https://github.com/echocrow/Mouser/releases/download/v1.4.5/mouser_1.4.5_darwin_amd64.tar.gz"
+    sha256 "a68b76d5e02ff1ada20b0dc5764e7d6f89ed5d376c0201da89a14885ca037930"
 
     def install
       bin.install "mouser"
     end
+  end
+  if Hardware::CPU.arm?
+    url "https://github.com/echocrow/Mouser/releases/download/v1.4.5/mouser_1.4.5_darwin_arm64.tar.gz"
+    sha256 "e491090b48d5123a0620e7f0c568d44b979ef11276bde080bba424f042b8ace3"
 
-    if Hardware::CPU.arm?
-      def caveats
-        <<~EOS
-          The darwin_arm64 architecture is not supported for the Mouser
-          formula at this time. The darwin_amd64 binary may work in compatibility
-          mode, but it might not be fully supported.
-        EOS
-      end
+    def install
+      bin.install "mouser"
     end
   end
 
