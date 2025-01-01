@@ -5,21 +5,21 @@
 class Mouser < Formula
   desc "Automate actions via mouse gestures."
   homepage "https://github.com/echocrow/Mouser"
-  version "1.4.6"
+  version "1.5.0"
   license "LGPL-3.0-or-later"
   depends_on :macos
 
   if Hardware::CPU.intel?
-    url "https://github.com/echocrow/Mouser/releases/download/v1.4.6/mouser_1.4.6_darwin_amd64.tar.gz"
-    sha256 "dfe3deb7fcf3087167fe9633494b690d1e7fc5635a91330573cb2d3d2e44fb37"
+    url "https://github.com/echocrow/Mouser/releases/download/v1.5.0/mouser_1.5.0_darwin_amd64.tar.gz"
+    sha256 "88380449bdb6663cfa164a33e58f04c24821c538bbbd496d8bec6c4871aa2e4d"
 
     def install
       bin.install "mouser"
     end
   end
   if Hardware::CPU.arm?
-    url "https://github.com/echocrow/Mouser/releases/download/v1.4.6/mouser_1.4.6_darwin_arm64.tar.gz"
-    sha256 "eb8dfec085345cc0eec9c78579eaea296963c76be6eaa8f34173ac4f479c8881"
+    url "https://github.com/echocrow/Mouser/releases/download/v1.5.0/mouser_1.5.0_darwin_arm64.tar.gz"
+    sha256 "f3e1228cdd6e6d5acc9d6ca6aa307df46556382a55b1ff27dcd083f67d647031"
 
     def install
       bin.install "mouser"
